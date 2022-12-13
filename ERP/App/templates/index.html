@@ -8,11 +8,63 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+
+    <style>
+        .parent_table{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 5%;
+        }
+    </style>
 </head>
 <body>
-
-        <h1> Hello, World! </h1>
-    
+<div class="parent_table">
+    <div class="conteiner-fluid">
+        <form method="POST" id="user_form">
+        <div class="row mb-3">
+            {% csrf_token %}
+            {{ forms.as_p }}
+            <!-- Form -->
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="name">
+            </div>
+            <div class="col-md-4">
+                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="name@example.com">
+            </div>
+            <div class="col-md-4">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+            <!-- End Form --> 
+        </div>
+        </form>  
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Table -->  
+                <table class="table table-dark table-hover col-md-12">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for items in data %}
+                        <tr>
+                            <td>{{ items.id }}</td>
+                            <td>{{ items.user_name }}</td>
+                            <td>{{ items.user_email }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- End Table -->
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="{% static 'js/main.js' %}"></script>
