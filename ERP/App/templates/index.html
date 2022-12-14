@@ -48,6 +48,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">E-mail</th>
+                            <th scope="'col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,10 @@
                             <td>{{ items.id }}</td>
                             <td>{{ items.user_name }}</td>
                             <td>{{ items.user_email }}</td>
+                            <td>
+                                <a href="delete/{{ items.id }}"><span><i class="fas fa-trash"></i>Delete</span></a>
+                                <a href="edit/{{ items.id }}"><span><i class="fas fa-trash"></i>Edit</span></a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
